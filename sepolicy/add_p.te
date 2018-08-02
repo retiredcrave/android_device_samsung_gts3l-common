@@ -1,0 +1,43 @@
+#============= bootanim ==============
+allow bootanim system_data_file:dir read;
+
+#============= cameraserver ==============
+allow cameraserver vendor_file:file { getattr open };
+
+#============= fsck ==============
+allow fsck e2fsck_device:blk_file ioctl;
+
+#============= init ==============
+#allow init bt_firmware_file:dir { create setattr };
+#allow init firmware_file:dir { create setattr };
+allow init hal_camera_hwservice:hwservice_manager find;
+allow init self:capability sys_nice;
+#allow init system_file:file execute_no_trans;
+allow init vndbinder_device:chr_file read;
+
+#============= kernel ==============
+allow kernel unlabeled:file read;
+
+#============= logd ==============
+allow logd device:file { getattr open read };
+
+#============= servicemanager ==============
+allow servicemanager nonplat_service_contexts_file:file { getattr open read };
+allow servicemanager device:file { open read };
+
+#============= system_server ==============
+allow system_server device:file read;
+allow system_server vendor_file:file { open read execute getattr };
+
+#============= zygote ==============
+allow zygote device:file { open read };
+
+#============= cameraserver ==============
+allow cameraserver hidl_allocator_hwservice:hwservice_manager find;
+allow cameraserver mm-qcamerad:unix_dgram_socket sendto;
+allow cameraserver vendor_camera_data_file:sock_file write;
+allow cameraserver vendor_file:file read;
+allow cameraserver video_device:chr_file { open read write };
+
+#============= hwservicemanager ==============
+allow hwservicemanager device:file { open read };

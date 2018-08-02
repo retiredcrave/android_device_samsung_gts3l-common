@@ -1,0 +1,17 @@
+#============= bootanim ==============
+allow bootanim vendor_file:dir getattr;
+allow bootanim vendor_file:file getattr;
+
+#============= hal_keymaster_default ==============
+allow hal_keymaster_default vendor_file:lnk_file read;
+
+#============= mm-pp-daemon ==============
+allow mm-pp-daemon vendor_file:dir getattr;
+allow mm-pp-daemon vendor_file:file getattr;
+allow mm-pp-daemon vendor_file:lnk_file { getattr read };
+
+#============= sgdisk ==============
+allow sgdisk vendor_file:file getattr;
+
+#============= shell ==============
+allow shell vendor_file:dir getattr;

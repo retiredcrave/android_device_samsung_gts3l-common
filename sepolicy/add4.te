@@ -1,0 +1,2 @@
+#============= hal_configstore_default ==============
+allow hal_configstore_default vendor_file:lnk_file { getattr read };

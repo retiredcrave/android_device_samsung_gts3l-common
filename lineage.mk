@@ -13,5 +13,5 @@ PRODUCT_GMS_CLIENTID_BASE := android-samsung
 
 BUILD_FINGERPRINT := samsung/gts3lltexx/gts3llte:8.0.0/R16NW/T825XXU1BRE2:user/release-keys
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=gts3lltexx
+#PRODUCT_BUILD_PROP_OVERRIDES += \
+#    PRODUCT_NAME=gts3lltexx

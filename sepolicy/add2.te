@@ -1,0 +1,34 @@
+#============= bootanim ==============
+allow bootanim vendor_file:lnk_file { getattr read };
+
+#============= hal_audio_default ==============
+allow hal_audio_default vendor_file:file { execute getattr open read };
+
+#============= hal_keymaster_default ==============
+allow hal_keymaster_default vendor_file:file { execute open read };
+allow hal_keymaster_default vendor_file:lnk_file getattr;
+
+#============= hwservicemanager ==============
+allow hwservicemanager vendor_file:dir getattr;
+allow hwservicemanager vendor_file:file getattr;
+allow hwservicemanager vendor_file:lnk_file { getattr read };
+
+#============= logd ==============
+allow logd vendor_file:file getattr;
+
+#============= sgdisk ==============
+allow sgdisk vendor_file:dir getattr;
+allow sgdisk vendor_file:lnk_file { getattr read };
+
+#============= shell ==============
+allow shell vendor_file:file getattr;
+
+#============= tzdatacheck ==============
+allow tzdatacheck vendor_file:dir getattr;
+allow tzdatacheck vendor_file:file getattr;
+allow tzdatacheck vendor_file:lnk_file { getattr read };
+
+#============= vndservicemanager ==============
+allow vndservicemanager vendor_file:dir getattr;
+allow vndservicemanager vendor_file:file { getattr open read };
+allow vndservicemanager vendor_file:lnk_file { getattr read };

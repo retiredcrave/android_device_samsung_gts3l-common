@@ -33,7 +33,7 @@ MODEM_IMAGES := \
     modem.b12 modem.b13 modem.b15 modem.b16 modem.b17 modem.b18 \
     modem.b19 modem.b20 modem.mdt
 
-MODEM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(MODEM_IMAGES)))
+MODEM_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(MODEM_IMAGES)))
 $(MODEM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "MODEM firmware link: $@"
 	@mkdir -p $(dir $@)
@@ -69,7 +69,7 @@ $(WCNSS_MAC_SYMLINK): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(WCNSS_INI_SYMLINK) $(WCNSS_MAC_SYMLINK)
 
 # Create links for audcal data files
-$(shell mkdir -p $(TARGET_OUT)/etc/firmware/wcd9320; \
+$(shell mkdir -p $(TARGET_OUT_VENDOR)/etc/firmware/wcd9320; \
 	ln -sf /data/misc/audio/wcd9320_anc.bin \
 		$(TARGET_OUT)/etc/firmware/wcd9320/wcd9320_anc.bin;\
 	ln -sf /data/misc/audio/mbhc.bin \
@@ -387,5 +387,15 @@ $(WSM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(WSM_SYMLINKS)
+
+BT_FIRMWARE := bdwlan30.bin btnv32.bin btfw32.tlv
+BT_FIRMWARE_SYMLINKS := $(addprefix $(TARGET_OUT_VENDOR)/firmware/,$(notdir $(BT_FIRMWARE)))
+$(BT_FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Creating BT firmware symlink: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /bt_firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(BT_FIRMWARE_SYMLINKS)
 
 endif

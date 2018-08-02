@@ -1,0 +1,47 @@
+
+#============= fsck ==============
+#allow fsck block_device:blk_file { open read write };
+allow fsck vendor_file:dir getattr;
+allow fsck vendor_file:file getattr;
+allow fsck vendor_file:lnk_file { getattr read };
+
+#============= hal_cas_default ==============
+allow hal_cas_default vndbinder_device:chr_file { ioctl open read write };
+
+#============= hal_drm_default ==============
+allow hal_drm_default vendor_file:file { getattr open read };
+
+#============= hal_keymaster_default ==============
+allow hal_keymaster_default vendor_file:dir getattr;
+allow hal_keymaster_default vendor_file:file getattr;
+
+#============= init ==============
+allow init loop_device:blk_file relabelto;
+
+#============= logd ==============
+allow logd vendor_file:dir getattr;
+allow logd vendor_file:lnk_file { getattr read };
+
+#============= rfs_access ==============
+allow rfs_access vendor_file:lnk_file read;
+
+#============= servicemanager ==============
+allow servicemanager vendor_file:dir getattr;
+allow servicemanager vendor_file:file getattr;
+allow servicemanager vendor_file:lnk_file { getattr read };
+
+#============= shell ==============
+allow shell vendor_file:lnk_file { getattr read };
+
+#============= vdc ==============
+allow vdc vendor_file:dir getattr;
+allow vdc vendor_file:file getattr;
+allow vdc vendor_file:lnk_file { getattr read };
+
+#============= vndservicemanager ==============
+allow vndservicemanager vendor_file:file execute;
+
+#============= vold ==============
+allow vold vendor_file:dir getattr;
+allow vold vendor_file:file getattr;
+allow vold vendor_file:lnk_file { getattr read };

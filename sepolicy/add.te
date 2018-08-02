@@ -1,0 +1,52 @@
+allow fsck loop_device:blk_file { ioctl open read write };
+
+#============= bootanim ==============
+allow bootanim kernel:fd use;
+
+#============= fsck ==============
+allow fsck kernel:fd use;
+
+#============= hal_allocator_default ==============
+#allow hal_allocator_default kernel:fd use;
+
+#============= hal_audio_default ==============
+allow hal_audio_default kernel:fd use;
+
+#============= hal_bluetooth_qti ==============
+allow hal_bluetooth_qti kernel:fd use;
+
+#============= hal_keymaster_default ==============
+allow hal_keymaster_default kernel:fd use;
+
+#============= hwservicemanager ==============
+allow hwservicemanager kernel:fd use;
+
+#============= logd ==============
+allow logd kernel:fd use;
+
+#============= servicemanager ==============
+allow servicemanager kernel:fd use;
+
+#============= sgdisk ==============
+allow sgdisk kernel:fd use;
+
+#============= shell ==============
+allow shell kernel:fd use;
+
+#============= sysinit ==============
+#allow sysinit kernel:fd use;
+
+#============= tzdatacheck ==============
+allow tzdatacheck kernel:fd use;
+
+#============= ueventd ==============
+allow ueventd kernel:fd use;
+
+#============= vdc ==============
+allow vdc kernel:fd use;
+
+#============= vndservicemanager ==============
+allow vndservicemanager kernel:fd use;
+
+#============= vold ==============
+allow vold kernel:fd use;

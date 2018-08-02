@@ -3,7 +3,10 @@
 # specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
 #<src>                                              <mnt_point>  <type>  <mnt_flags and options>                                                        <fs_mgr_flags>
 
-/dev/block/bootdevice/by-name/system                /system            ext4    ro,barrier=1                                                                   wait,recoveryonly
+#/dev/block/bootdevice/by-name/system                /system            ext4    ro,barrier=1                                                                   wait,recoveryonly
+/dev/block/loop0                                    /system            ext4    ro,barrier=1                                                                   wait,recoveryonly
+/dev/block/loop1                                    /vendor            ext4    ro,barrier=1                                                                   wait,recoveryonly
+
 /dev/block/bootdevice/by-name/userdata              /data              ext4    nosuid,nodev,noatime,barrier=1,noauto_da_alloc                                 wait,check,encryptable=footer,quota,formattable
 /dev/block/bootdevice/by-name/cache                 /cache             ext4    nosuid,nodev,noatime,barrier=1                                                 wait,check,formattable
 /dev/block/bootdevice/by-name/apnhlos               /firmware          vfat    ro,shortname=lower,dmask=222,fmask=333,context=u:object_r:firmware_file:s0     wait

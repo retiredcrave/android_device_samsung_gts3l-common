@@ -1,0 +1,9 @@
+#============= bt_firmware_file ==============
+allow bt_firmware_file rootfs:filesystem associate;
+
+#============= firmware_file ==============
+allow firmware_file rootfs:filesystem associate;
+
+#============= init ==============
+#allow init bt_firmware_file:dir { create setattr };
+#allow init firmware_file:dir { create setattr };

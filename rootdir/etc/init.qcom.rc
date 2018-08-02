@@ -25,10 +25,10 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-import init.qcom.power.rc
-import init.qcom.usb.rc
-import init.target.rc
-import init.samsung.rc
+import /vendor/etc/init/hw/init.qcom.power.rc
+import /vendor/etc/init/hw/init.qcom.usb.rc
+import /vendor/etc/init/hw/init.target.rc
+import /vendor/etc/init/hw/init.samsung.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug
@@ -370,12 +370,6 @@ service hci_filter_root /vendor/bin/wcnss_filter
     user bluetooth
     group bluetooth oem_2950 system
     disabled
-
-service atfwd /vendor/bin/ATFWD-daemon
-    class late_start
-    user system
-    group system radio
-    writepid /dev/cpuset/system-background/tasks
 
 service netmgrd /vendor/bin/netmgrd
     class main

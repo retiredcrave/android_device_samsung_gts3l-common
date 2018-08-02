@@ -43,7 +43,7 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7464900.sdhci lpm_levels.sleep_disabled=1 rcupdate.rcu_expedited=1 cma=32M@0-0xffffffff
+BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7464900.sdhci lpm_levels.sleep_disabled=1 rcupdate.rcu_expedited=1 cma=32M@0-0xffffffff androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_SEPARATED_DT := true
@@ -57,6 +57,10 @@ TARGET_KERNEL_CONFIG := lineage_gts3llte_defconfig
 # Platform
 TARGET_BOARD_PLATFORM := msm8996
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
+
+# Properties
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+TARGET_VENDOR_PROP += $(DEVICE_PATH)/vendor.prop
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
@@ -87,8 +91,6 @@ AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 BOARD_USES_ALSA_AUDIO := true
 #USE_CUSTOM_AUDIO_POLICY := 1
 
-#AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
-
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAS_QCA_BT_ROME := true
@@ -103,7 +105,7 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 
 # Charger
-#BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
 
 # Dex
 ifeq ($(HOST_OS),linux)
@@ -140,7 +142,7 @@ BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 79691776
-BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 3072000000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 3460300800
 #BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4194304000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26226982912
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -157,11 +159,11 @@ DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/manifest.xml
 DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/compatibility_matrix.xml
 
 TARGET_LD_SHIM_LIBS := \
-	/system/vendor/lib/libbauthserver.so|/vendor/lib/libbauthtzcommon_shim.so \
-	/system/vendor/lib64/libbauthserver.so|/vendor/lib64/libbauthtzcommon_shim.so
+	/vendor/lib/libbauthserver.so|/vendor/lib/libbauthtzcommon_shim.so \
+	/vendor/lib64/libbauthserver.so|/vendor/lib64/libbauthtzcommon_shim.so
 
 TARGET_LD_SHIM_LIBS += \
-   /system/vendor/lib/hw/camera.msm8996.so|/system/vendor/lib/libshims_cameraclient.so \
+   /vendor/lib/hw/camera.msm8996.so|/vendor/lib/libshims_cameraclient.so \
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
@@ -181,23 +183,27 @@ TARGET_POWERHAL_VARIANT := qcom
 BOARD_USES_QCOM_HARDWARE := true
 TARGET_USE_SDCLANG := true
 
-# Ramdisk
-BOARD_ROOT_EXTRA_FOLDERS := dsp efs firmware firmware-modem persist
-BOARD_ROOT_EXTRA_SYMLINKS := /system/etc/firmware/btfw32.tlv:/bt_firmware/image/btfw32.tlv
-BOARD_ROOT_EXTRA_SYMLINKS += /system/etc/firmware/btnv32.bin:/bt_firmware/image/btnv32.bin
-BOARD_ROOT_EXTRA_SYMLINKS += /data/tombstones:/tombstones
-
 # Recovery
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Treble
-#PRODUCT_FULL_TREBLE_OVERRIDE := true
 PRODUCT_VENDOR_MOVE_ENABLED := true
 
+BOARD_VENDORIMAGE_PARTITION_SIZE := 503316480
+#BOARD_VENDORIMAGE_PARTITION_SIZE := 608174080
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_COPY_OUT_VENDOR := vendor
+
+PRODUCT_FULL_TREBLE_OVERRIDE := true
+BOARD_VNDK_RUNTIME_DISABLE := true
+BOARD_VNDK_VERSION := current
+
+PRODUCT_COMPATIBILITY_MATRIX_LEVEL_OVERRIDE := 27
+PRODUCT_SHIPPING_API_LEVEL := 21
+
 # RIL
-PROTOBUF_SUPPORTED := true
 TARGET_RIL_VARIANT := caf
 
 # SELinux
