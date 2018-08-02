@@ -1,0 +1,20 @@
+/boot           emmc /dev/block/bootdevice/by-name/boot
+/recovery       emmc /dev/block/bootdevice/by-name/recovery                       flags=backup=1
+/data           ext4 /dev/block/bootdevice/by-name/userdata                       flags=encryptable=footer;length=-16384
+/cache          ext4 /dev/block/bootdevice/by-name/cache                          flags=backup=1
+/firmware       vfat /dev/block/bootdevice/by-name/apnhlos                        flags=backup=1;display="firmware";mounttodecrypt;fsflags=context=u:object_r:firmware_file:s0
+/misc           emmc /dev/block/bootdevice/by-name/misc                           flags=backup=1;display="misc"
+/persist        ext4 /dev/block/bootdevice/by-name/persist                        flags=backup=1;display="persist"
+/persistent     emmc /dev/block/bootdevice/by-name/persistent                     flags=backup=1;display="persistent"          
+/steady         emmc /dev/block/bootdevice/by-name/steady                         flags=backup=1;display="steady"
+
+/external_sd    vfat /dev/block/mmcblk1p1                     /dev/block/mmcblk1  flags=display="Micro SDcard";storage;settingsstorage;wipeingui;removable;encryptable=footer;length=-16384
+/usb-otg        vfat /dev/block/sde1                          /dev/block/sde      flags=display="USB-OTG";storage;wipeingui;removable
+
+/system_src     ext4 /dev/block/bootdevice/by-name/system                         flags=wipeingui
+
+/system         ext4 /dev/block/loop0                                             flags=wipeingui
+/vendor         ext4 /dev/block/loop1                                             flags=wipeingui
+
+/system_image   emmc /dev/block/loop0
+/vendor_image   emmc /dev/block/loop1

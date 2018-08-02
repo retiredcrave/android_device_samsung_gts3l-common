@@ -1,26 +1,36 @@
 #
-# Copyright (C) 2016 The CyanogenMod Project
+# Copyright 2017 The Android Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-# http://www.apache.org/licenses/LICENSE-2.0
+#      http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+#
 
-BOARD_VENDOR := samsung
+# This contains the module build definitions for the hardware-specific
+# components for this device.
+#
+# As much as possible, those components should be built unconditionally,
+# with device-specific names to avoid collisions, to avoid device-specific
+# bitrot and build breakages. Building a component unconditionally does
+# *not* include it on all devices, so it is safe even with hardware-specific
+# components.
 
-DEVICE_PATH := device/samsung/gts3llte
+PRODUCT_CHARACTERISTICS := tablet
+TARGET_SCREEN_HEIGHT := 2048
+TARGET_SCREEN_WIDTH := 1536
 
-TARGET_SPECIFIC_HEADER_PATH := $(DEVICE_PATH)/include
-
-# Assert
-TARGET_OTA_ASSERT_DEVICE := gts3llte
+# Platform
+TARGET_BOARD_PLATFORM := msm8996
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
 # Architecture
 TARGET_ARCH := arm64
@@ -33,9 +43,10 @@ TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := kryo
+TARGET_2ND_CPU_VARIANT := generic
 
-TARGET_USES_64_BIT_BINDER := true
+# CPU
+ENABLE_CPUSETS := true
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8996
@@ -43,101 +54,25 @@ TARGET_NO_BOOTLOADER := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7464900.sdhci lpm_levels.sleep_disabled=1 rcupdate.rcu_expedited=1 cma=32M@0-0xffffffff
-BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=24M@0-0xffffffff rcupdate.rcu_expedited=1 androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_KERNEL_SEPARATED_DT := true
-BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02200000 --tags_offset 0x02000000 --board SRPPK08B000KU
-TARGET_KERNEL_SOURCE := kernel/samsung/msm8996
-BOARD_CUSTOM_BOOTIMG := true
-BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_CONFIG := lineage_gts3llte_defconfig
-
-# Platform
-TARGET_BOARD_PLATFORM := msm8996
-TARGET_BOARD_PLATFORM_GPU := qcom-adreno530
-
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
-
-# Audio
-#AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
-AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
-#AUDIO_FEATURE_ENABLED_APE_OFFLOAD := true
-#AUDIO_FEATURE_ENABLED_ALAC_OFFLOAD := true
-#AUDIO_FEATURE_ENABLED_ANC_HEADSET := true
-AUDIO_FEATURE_ENABLED_AUDIOSPHERE := true
-AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
-#AUDIO_FEATURE_ENABLED_DEV_ARBI := true
-AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
-AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
-AUDIO_FEATURE_ENABLED_FLUENCE := true
-AUDIO_FEATURE_ENABLED_HFP := true
-#AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
-AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
-AUDIO_FEATURE_ENABLED_NT_PAUSE_TIMEOUT := true
-AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
-AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
-#AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
-#AUDIO_FEATURE_ENABLED_VORBIS_OFFLOAD := true
-#AUDIO_FEATURE_ENABLED_WMA_OFFLOAD := true
-AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
-#BOARD_SUPPORTS_SOUND_TRIGGER := true
-BOARD_USES_ALSA_AUDIO := true
-#USE_CUSTOM_AUDIO_POLICY := 1
-
-#AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
-
-# Bluetooth
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
-BOARD_HAS_QCA_BT_ROME := true
-BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_QCOM := true
-QCOM_BT_USE_BTNV := true
-BOARD_BLUETOOTH_BDROID_HCILP_INCLUDED := false
-
-# Camera
-USE_CAMERA_STUB := true
-USE_DEVICE_SPECIFIC_CAMERA := true
-TARGET_USES_MEDIA_EXTENSIONS := true
-
-# Charger
-#BOARD_CHARGER_ENABLE_SUSPEND := true
-
-# Dex
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    WITH_DEXPREOPT ?= true
-  endif
-endif
-WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY ?= true
-
-# Display
-MAX_VIRTUAL_DISPLAY_DIMENSION := 4096
-TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-TARGET_USES_C2D_COMPOSITION := true
-TARGET_USES_GRALLOC1 := true
-TARGET_USES_HWC2 := true
-TARGET_USES_ION := true
-TARGET_USES_OVERLAY := true
-USE_OPENGL_RENDERER := true
-
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-MAX_EGL_CACHE_SIZE := 2048*1024
-
-OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
-
-VSYNC_EVENT_PHASE_OFFSET_NS := 2000000
-SF_VSYNC_EVENT_PHASE_OFFSET_NS := 6000000
+BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x02200000 --tags_offset 0x02000000 --board SRPPK04A000KU --dt device/samsung/gts3llte/dt.img
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/gts3llte/mkbootimg.mk
+TARGET_PREBUILT_KERNEL := device/samsung/gts3llte/kernel
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 
-# Filesystem
+# Recovery
+RECOVERY_VARIANT := twrp
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USERIMAGES_USE_F2FS := true
+
+# Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 79691776
 BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := f2fs
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 79691776
 BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 3072000000
@@ -145,80 +80,24 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 3072000000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26226982912
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Filesystem
-TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
-TARGET_EXFAT_DRIVER := exfat
+# Properties
+TARGET_SYSTEM_PROP += device/samsung/gts3llte/system.prop
 
-# Fingerprint
-TARGET_SEC_FP_HAL_VARIANT := bauth
+# TWRP
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
+TW_DEFAULT_BRIGHTNESS := 162
+TW_HAS_DOWNLOAD_MODE := true
+#TW_INCLUDE_CRYPTO := true
+TW_MAX_BRIGHTNESS := 255
+TW_MTP_DEVICE := "/dev/mtp_usb"
+TW_NO_EXFAT_FUSE := true
+TW_NO_LEGACY_PROPS := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_THEME := portrait_hdpi
 
-# HIDL
-DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/configs/manifest.xml
-DEVICE_MATRIX_FILE := $(DEVICE_PATH)/configs/compatibility_matrix.xml
-
-TARGET_LD_SHIM_LIBS := \
-	/system/vendor/lib/libbauthserver.so|/vendor/lib/libbauthtzcommon_shim.so \
-	/system/vendor/lib64/libbauthserver.so|/vendor/lib64/libbauthtzcommon_shim.so
-
-TARGET_LD_SHIM_LIBS += \
-   /system/vendor/lib/hw/camera.msm8996.so|/system/vendor/lib/libshims_cameraclient.so \
-
-# Init
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
-
-# Keymaster
-TARGET_PROVIDES_KEYMASTER := true
-
-# Lineage Hardware
-BOARD_HARDWARE_CLASS += \
-    $(DEVICE_PATH)/lineagehw
-
-# Power
-#TARGET_HAS_NO_WIFI_STATS := true
-TARGET_POWERHAL_VARIANT := qcom
-
-# QCOM
-BOARD_USES_QCOM_HARDWARE := true
-TARGET_USE_SDCLANG := true
-
-# Ramdisk
-BOARD_ROOT_EXTRA_FOLDERS := dsp efs firmware firmware-modem persist
-BOARD_ROOT_EXTRA_SYMLINKS := /system/etc/firmware/btfw32.tlv:/bt_firmware/image/btfw32.tlv
-BOARD_ROOT_EXTRA_SYMLINKS += /system/etc/firmware/btnv32.bin:/bt_firmware/image/btnv32.bin
-BOARD_ROOT_EXTRA_SYMLINKS += /data/tombstones:/tombstones
-
-# Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
-TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
-
-# Treble
-#PRODUCT_FULL_TREBLE_OVERRIDE := true
-PRODUCT_VENDOR_MOVE_ENABLED := true
-
-# RIL
-PROTOBUF_SUPPORTED := true
-TARGET_RIL_VARIANT := caf
-
-# SELinux
-include device/qcom/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-
-# Wifi
-BOARD_HAS_QCOM_WLAN := true
-BOARD_HAS_QCOM_WLAN_SDK := true
-BOARD_WLAN_DEVICE := qcwcn
-BOARD_WPA_SUPPLICANT_DRIVER := NL80211
-BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-BOARD_HOSTAPD_DRIVER := NL80211
-BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
-HOSTAPD_VERSION := VER_0_8_X
-WIFI_DRIVER_FW_PATH_AP := "ap"
-WIFI_DRIVER_FW_PATH_STA := "sta"
-WIFI_DRIVER_FW_PATH_P2P := "p2p"
-WPA_SUPPLICANT_VERSION := VER_0_8_X
-
-BOARD_HAVE_SAMSUNG_WIFI := true
-
-# inherit from the proprietary version
--include vendor/samsung/gts3llte/BoardConfigVendor.mk
+RECOVERY_TOUCHSCREEN_SWAP_XY := true
+RECOVERY_TOUCHSCREEN_FLIP_Y := true

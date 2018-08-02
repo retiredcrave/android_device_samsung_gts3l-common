@@ -1,61 +1,24 @@
-Device configuration for the Samsung Galaxy Tab S3 LTE
+## TWRP device tree for Samsung Galaxy Tab S3 9.7 lte SM-T825
+## gts3llte
 
-Copyright (C) 2017 The LineageOS Project
-Copyright (C) 2018 Valera Chigir <valera1978@tut.by>
+Add to `.repo/local_manifests/gts3llte.xml`:
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
-      http://www.apache.org/licenses/LICENSE-2.0
-
-------------------------------------------------------------------
-
-* Description
-
-  This repository is for LineageOS on Samsung Galaxy Tab S3 LTE (gts3llte)
-
-* How To Build LineageOS for Samsung Galaxy Tab S3 LTE
-
-  - Make a workspace
-
-mkdir cm15
-cd cm15
-
-  - Do repo init & sync
-
-repo init -u git://github.com/LineageOS/android.git -b lineage-15.1
-
-  - Create .repo/local_manifests/roomservice.xml with the following content:
-
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <manifest>
-
-  <project name="Valera1978/android_device_samsung_gts3llte" path="device/samsung/gts3llte" remote="github" />
-  <project name="Valera1978/android_kernel_samsung_msm8996" path="kernel/samsung/msm8996" remote="github" />
-  <project name="Valera1978/android_vendor_samsung_gts3llte" path="vendor/samsung/gts3llte" remote="github" />
-  <project name="LineageOS/android_hardware_samsung" path="hardware/samsung" remote="github" />
-
+  <project name="Valera1978/android_device_samsung_gts3llte" path="device/samsung/gts3llte" remote="github" revision="android-7.1" />
 </manifest>
 ```
 
-repo sync
+Get sources:
+`repo init -u git://github.com/minimal-manifest-twrp/platform_manifest_twrp_omni.git -b twrp-7.1`
 
-  - Copy proprietary vendor files
+Then run `repo sync` to check it out.
 
-  There are two options to to that. Connect your device with adb enabled and run:
+To build:
 
-./extract-files.sh
-
-  Or if you have the system image unpacked on your disk, then simply run:
-
-    STOCK_ROM_DIR=/path/to/system ./extract-files.sh
-
-  - Setup environment
-
+```sh
 . build/envsetup.sh
-
-  - Build lineage 15.1
-
-brunch gts3llte
+lunch omni_gts3llte-userdebug
+mka recoveryimage
+```
