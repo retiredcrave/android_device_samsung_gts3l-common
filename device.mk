@@ -25,7 +25,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Screen density
 PRODUCT_AAPT_CONFIG := normal
-PRODUCT_AAPT_PREF_CONFIG := xxxhdpi
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2048
@@ -34,15 +34,6 @@ TARGET_BOOTANIMATION_HALF_RES := true
 
 # Device characteristics
 PRODUCT_CHARACTERISTICS := tablet
-
-# Dalvik
-PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapstartsize=16m \
-    dalvik.vm.heapgrowthlimit=256m \
-    dalvik.vm.heapsize=512m \
-    dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=4m \
-    dalvik.vm.heapmaxfree=16m
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -75,6 +66,9 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.midi.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.midi.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/tablet_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/tablet_core_hardware.xml \
+
+# Vendor properties
+-include $(LOCAL_PATH)/vendor_prop.mk
 
 # QMI
 PRODUCT_COPY_FILES += \
@@ -121,9 +115,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.camera.device@1.0_vendor
 
 PRODUCT_PACKAGES += \
-    libshims_cameraclient
-
-PRODUCT_PACKAGES += \
     Snap
 
 # Connectivity Engine support (CNE)
@@ -134,8 +125,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.allocator@2.0-service \
-    android.hardware.graphics.composer@2.1-impl \
-    android.hardware.graphics.composer@2.1-service \
+    android.hardware.graphics.composer@2.2-service \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.configstore@1.1-service \
     android.hardware.memtrack@1.0-impl \
@@ -169,8 +159,7 @@ PRODUCT_PACKAGES += \
 
 # Fingerprint
 PRODUCT_PACKAGES += \
-    android.hardware.biometrics.fingerprint@2.1-service \
-    libbauthtzcommon_shim
+    android.hardware.biometrics.fingerprint@2.1-service
 
 # For config.fs
 PRODUCT_PACKAGES += \
@@ -200,15 +189,12 @@ PRODUCT_COPY_FILES += \
 # Healthd
 PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
-    android.hardware.health@2.0-service \
-    charger_res_images
+    android.hardware.health@2.0-service
 
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
-    android.hidl.base@1.0_system \
-    android.hidl.manager@1.0 \
-    android.hidl.manager@1.0_system
+    android.hidl.manager@1.0
 
 # IMS
 PRODUCT_PACKAGES += \
@@ -315,8 +301,7 @@ PRODUCT_PACKAGES += \
     init.qcom.power.rc \
     init.qcom.usb.rc \
     init.samsung.rc \
-    ueventd.qcom.rc \
-    init.qcom.sh
+    ueventd.qcom.rc
 
 # RenderScript
 PRODUCT_PACKAGES += \
