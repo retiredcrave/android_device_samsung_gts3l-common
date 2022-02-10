@@ -52,7 +52,9 @@ BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_PAGESIZE := 4096
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x02200000 --tags_offset 0x02000000
+BOARD_KERNEL_TAGS_OFFSET := 0x02200000
+BOARD_RAMDISK_OFFSET := 0x02000000
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 TARGET_KERNEL_ARCH := arm64
