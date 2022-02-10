@@ -57,7 +57,6 @@ BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8996
-TARGET_COMPILE_WITH_MSM_KERNEL := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8996
