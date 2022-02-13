@@ -1,3 +1,6 @@
+# Android
+ro.product.first_api_level=24
+
 # Audio
 af.fast_track_multiplier=1
 audio.deep_buffer.media=true
