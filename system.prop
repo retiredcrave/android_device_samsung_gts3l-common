@@ -6,6 +6,7 @@ persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.voicecall=true
 persist.vendor.audio.fluence.voicerec=false
 persist.vendor.audio.hw.binder.size_kbyte=1024
+persist.vendor.bt.enable.splita2dp=false
 ro.af.client_heap_size_kbyte=7168
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=5
@@ -24,6 +25,7 @@ vendor.audio.parser.ip.buffer.size=262144
 vendor.audio.safx.pbe.enabled=true
 vendor.audio.tunnel.encode=false
 vendor.audio.use.sw.alac.decoder=true
+vendor.audio.use.sw.ape.decoder=true
 vendor.voice.path.for.pcm.voip=true
 
 # Bluetooth
