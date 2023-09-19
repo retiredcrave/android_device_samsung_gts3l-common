@@ -458,11 +458,6 @@ lib64/libimage_flashed_lls.so:vendor/lib64/libimage_flashed_lls.so
 lib64/libsmartfocus_interface.so:vendor/lib64/libsmartfocus_interface.so
 lib64/libsmartfocusengine.so:vendor/lib64/libsmartfocusengine.so
 
-# Device Health
-lib64/vendor.samsung.hardware.exthealth@1.0.so
-vendor/bin/hw/android.hardware.health@2.0-service.samsung
-vendor/etc/init/android.hardware.health@2.0-service.samsung.rc
-
 # Display postprocessing
 lib/vendor.display.color@1.0.so
 lib/vendor.display.color@1.1.so
