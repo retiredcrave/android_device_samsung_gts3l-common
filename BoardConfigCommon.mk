@@ -61,6 +61,8 @@ TARGET_COMPILE_WITH_MSM_KERNEL := true
 TARGET_KERNEL_ADDITIONAL_FLAGS := \
     HOSTLDFLAGS="-fuse-ld=lld -Wno-unused-command-line-argument"
 
+NEED_KERNEL_MODULE_SYSTEM := true
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8996
 
