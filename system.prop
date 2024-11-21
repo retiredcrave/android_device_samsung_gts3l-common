@@ -135,7 +135,11 @@ sys.vendor.shutdown.waittime=500
 vendor.usb.controller=6a00000.dwc3
 
 # VNDK
-ro.vndk.version=current
+# [3:   linkerconfig:  595] linkerconfig: Unable to access VNDK APEX at path: /apex/com.android.vndk.vcurrent: No such file or directory
+# [3:   linkerconfig:  595] linkerconfig: Unable to access VNDK APEX at path: /apex/com.android.vndk.vcurrent: No such file or directory
+# [3:   linkerconfig:  595] linkerconfig: Check failed: !"undefined var" SANITIZER_DEFAULT_VENDOR is not defined
+# [3:           init:    1] linkerconfig: libc: Fatal signal 6 (SIGABRT), code -1 (SI_QUEUE) in tid 595 (linkerconfig), pid 595 (linkerconfig)
+# ro.vndk.version=current
 
 # Wifi
 wifi.interface=wlan0
