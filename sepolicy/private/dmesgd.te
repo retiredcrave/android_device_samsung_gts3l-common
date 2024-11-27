@@ -1,2 +1,2 @@
 #============= dmesgd ==============
-# allow dmesgd vendor_file:file r_file_perms;
+allow dmesgd vendor_file:file r_file_perms;

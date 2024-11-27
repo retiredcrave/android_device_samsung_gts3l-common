@@ -3,7 +3,10 @@ allow init emmcblk_device:blk_file getattr;
 
 #!!!! This avc is allowed in the current policy
 #!!!! This av rule may have been overridden by an extended permission av rule
-allow init emmcblk_device:blk_file ioctl;
+# allow init emmcblk_device:blk_file ioctl;
+
+dontaudit init emmcblk_device:blk_file ioctl;
+
 allow init hal_light_service:service_manager add;
 allow init hal_usb_service:service_manager add;
 allow init same_process_hal_file:file execute;
