@@ -2,6 +2,9 @@
 allow hal_camera_default default_android_vndservice:service_manager find;
 allow hal_camera_default default_prop:file r_file_perms;
 allow hal_camera_default radio_prop:file r_file_perms;
+# begin added after 0.1% hour/battery drain
+allow hal_camera_default sysfs_camera_writable:file rw_file_perms;
+# end added after 0.1% hour/battery drain
 
 allow hal_camera_default camera_data_file:sock_file write;
 

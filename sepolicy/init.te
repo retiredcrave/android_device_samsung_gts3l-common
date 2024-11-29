@@ -7,6 +7,14 @@ allow init emmcblk_device:blk_file getattr;
 
 dontaudit init emmcblk_device:blk_file ioctl;
 
+# begin added after 0.1% hour/battery drain
+allow init app_data_file:dir create_dir_perms;
+allow init kernel:security check_context;
+allow init privapp_data_file:dir create_dir_perms;
+allow init seapp_contexts_file:file r_file_perms;
+allow init system_app_data_file:dir create_dir_perms;
+# end added after 0.1% hour/battery drain
+
 allow init hal_light_service:service_manager add;
 allow init hal_usb_service:service_manager add;
 allow init same_process_hal_file:file execute;
