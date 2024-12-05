@@ -311,7 +311,9 @@ PRODUCT_PACKAGES += \
     libOmxQcelp13Enc \
     libOmxVdec \
     libOmxVenc \
-    libstagefrighthw
+    libmm-omxcore \
+    libstagefrighthw \
+    libstagefright_softomx_plugin.vendor
 
 # Power
 PRODUCT_PACKAGES += \
