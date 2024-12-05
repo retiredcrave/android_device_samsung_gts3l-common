@@ -186,7 +186,8 @@ PRODUCT_PACKAGES += \
     libion.vendor \
     libpower.vendor \
     libprocessgroup.vendor \
-    libsqlite.vendor
+    libsqlite.vendor \
+    dlopen
 
 # Doze mode
 PRODUCT_PACKAGES += \
