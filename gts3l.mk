@@ -433,7 +433,7 @@ PRODUCT_COPY_FILES += \
 
 # WiFi
 PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service \
+    android.hardware.wifi-service \
     libwpa_client \
     hostapd \
     wpa_supplicant \
