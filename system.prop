@@ -120,6 +120,9 @@ vidc.enc.dcvs.extra-buff-count=2
 # Memory optimizations
 ro.vendor.qti.sys.fw.bservice_enable=true
 
+# ODS
+odsign.key.done=1
+
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 ro.vendor.iocgrp.config=1
