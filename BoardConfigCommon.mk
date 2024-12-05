@@ -183,7 +183,7 @@ TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
 # Reason: Expecting ',' delimiter: line 41 column 30 (char 4400)
 TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
+# TARGET_USERIMAGES_USE_F2FS := true
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2020-03-01
