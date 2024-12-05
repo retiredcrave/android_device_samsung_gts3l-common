@@ -178,7 +178,10 @@ BOARD_USES_QCOM_HARDWARE := true
 
 # Recovery
 TARGET_RECOVERY_FSTAB := $(COMMON_PATH)/rootdir/etc/fstab.qcom
-TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+# "RecoveryPixelFormat": ""BGRA_8888"",
+# Error parsing JSON in file: out/soong/soong.lineage_gts3lwifi.extra.variables.
+# Reason: Expecting ',' delimiter: line 41 column 30 (char 4400)
+TARGET_RECOVERY_PIXEL_FORMAT := BGRA_8888
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
