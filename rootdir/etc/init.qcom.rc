@@ -558,7 +558,7 @@ service vendor.sensors /vendor/bin/sscrpcd
 service vendor.sensors.qti /vendor/bin/sensors.qti
     class core
     user system
-    group system
+    group system net_raw
     disabled
 
 service factory_adsp /vendor/bin/factory.adsp
